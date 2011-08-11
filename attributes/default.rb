@@ -17,4 +17,6 @@
 # limitations under the License.
 #
 
-default[:platform_packages] = []
+default['platform_packages']['pkgs']      = []
+
+default['platform_packages']['data_bag']  = ['pkgs', node['platform']]

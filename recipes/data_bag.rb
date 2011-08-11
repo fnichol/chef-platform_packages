@@ -2,7 +2,7 @@
 # Cookbook Name:: platform_packages
 # Recipe:: default
 #
-# Copyright 2011, Opscode, Inc.
+# Copyright 2011, Fletcher Nichol
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,16 @@
 # limitations under the License.
 #
 
-node['platform_packages']['pkgs'].each do |pkg_hash|
-  package pkg_hash[:name] do
-    version   pkg_hash[:version]        if pkg_hash[:version]
-    source    pkg_hash[:source]         if pkg_hash[:source]
-    options   pkg_hash[:options]        if pkg_hash[:options]
-    action    pkg_hash[:action].to_sym  if pkg_hash[:action]
-  end
+bag_id = "workstation-#{node['platform']}"
+
+bag_item = begin
+  data_bag_item('apps', node['platform_packages']['data_bag'])
+rescue => ex
+  Chef::Log.info(
+    "Data bag apps/#{bag_id} was not found due to: #{ex.inspect}, so skipping")
+  Hash.new
 end
+
+node['platform_packages']['pkgs'] = bag_item['pkgs']
+
+include 'platform_packages'

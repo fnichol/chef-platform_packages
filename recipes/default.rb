@@ -19,9 +19,8 @@
 
 node['platform_packages']['pkgs'].each do |pkg_hash|
   package pkg_hash[:name] do
-    version   pkg_hash[:version]        if pkg_hash[:version]
-    source    pkg_hash[:source]         if pkg_hash[:source]
-    options   pkg_hash[:options]        if pkg_hash[:options]
-    action    pkg_hash[:action].to_sym  if pkg_hash[:action]
+    %w{version source options action}.each do |attr|
+      send(attr, pkg_hash[attr])  if pkg_hash[attr]
+    end
   end
 end

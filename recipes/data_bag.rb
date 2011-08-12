@@ -17,13 +17,12 @@
 # limitations under the License.
 #
 
-bag_id = "workstation-#{node['platform']}"
-
 bag_item = begin
   data_bag_item(*node['platform_packages']['data_bag'])
 rescue => ex
   Chef::Log.info(
-    "Data bag apps/#{bag_id} was not found due to: #{ex.inspect}, so skipping")
+    "Data bag #{node['platform_packages']['data_bag'].join('/')} was not " +
+    "found due to: #{ex.inspect}, so skipping")
   Hash.new
 end
 

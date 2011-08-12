@@ -20,7 +20,7 @@
 bag_id = "workstation-#{node['platform']}"
 
 bag_item = begin
-  data_bag_item('apps', node['platform_packages']['data_bag'])
+  data_bag_item(*node['platform_packages']['data_bag'])
 rescue => ex
   Chef::Log.info(
     "Data bag apps/#{bag_id} was not found due to: #{ex.inspect}, so skipping")
@@ -29,4 +29,4 @@ end
 
 node['platform_packages']['pkgs'] = bag_item['pkgs']
 
-include 'platform_packages'
+include_recipe 'platform_packages'

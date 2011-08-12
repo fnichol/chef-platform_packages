@@ -17,15 +17,13 @@
 # limitations under the License.
 #
 
-bag_item = begin
-  data_bag_item(*node['platform_packages']['data_bag'])
+bag       = node['platform_packages']['data_bag']
+bag_item  = begin
+  data_bag_item(*bag)
 rescue => ex
-  Chef::Log.info(
-    "Data bag #{node['platform_packages']['data_bag'].join('/')} was not " +
-    "found due to: #{ex.inspect}, so skipping")
+  Chef::Log.info("Data bag #{bag.join('/')} not found (#{ex}), so skipping")
   Hash.new
 end
 
-node['platform_packages']['pkgs'] = bag_item['pkgs']
-
+node['platform_packages']['pkgs'] += Array(bag_item['pkgs'])
 include_recipe 'platform_packages'

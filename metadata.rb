@@ -1,17 +1,15 @@
 maintainer       "Fletcher Nichol"
 maintainer_email "fnichol@nichol.ca"
 license          "Apache 2.0"
-description      "Installs/Configures simple platform_packages without fuss"
+description      "Installs individual packages via attribute or data bag metadata."
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.3.0"
-recipe           "platform_packages", "Installs a set of simple packages from the platform's package manager"
+version          "0.4.0"
 
-%w{ ubuntu debian arch suse }.each do |os|
-  supports os
-end
+supports "ubuntu"
+supports "debian"
+supports "mac_os_x"
+supports "suse"
+supports "arch"
 
-attribute "platform_packages",
-  :display_name => "A list of pacakges",
-  :description  => "A list of pacakges (represented by a hash of properties) to be installed on the system, all of which need no configuration.",
-  :type         => "array",
-  :default      => []
+recipe "platform_packages", "Processes a list of *pkgs* (which is emtpy by default) to be installed."
+recipe "platform_packages::data_bag", "Fetches an list of *pkgs* from a data bag item and appends it to the `node['platform_packages']['pkgs']` attribute for processing."

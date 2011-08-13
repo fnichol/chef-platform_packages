@@ -28,7 +28,8 @@ recipes run on these platforms without error:
 
 ## Cookbooks
 
-There are **no* external cookbook dependencies.
+There are **no* external cookbook dependencies. If you are targetting Mac OS
+X, then you should consider using the [homebrew cookbook][homebrew_cb].
 
 # Usage
 

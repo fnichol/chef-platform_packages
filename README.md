@@ -26,6 +26,8 @@ recipes run on these platforms without error:
 * suse
 * arch
 
+Please [report][issues] any additional platforms so they can be added.
+
 ## Cookbooks
 
 There are **no* external cookbook dependencies. If you are targetting Mac OS

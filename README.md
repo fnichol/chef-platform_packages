@@ -33,6 +33,64 @@ Please [report][issues] any additional platforms so they can be added.
 There are **no* external cookbook dependencies. If you are targetting Mac OS
 X, then you should consider using the [homebrew cookbook][homebrew_cb].
 
+# Installation
+
+Depending on the situation and use case there are several ways to install
+this cookbook. All the methods listed below assume a tagged version release
+is the target, but omit the tags to get the head of development. A valid
+Chef repository structure like the [Opscode repo][chef_repo] is also assumed.
+
+## From the Opscode Community Platform
+
+To install this cookbook from the Opscode platform, use the *knife* command:
+
+    knife cookbook site install platform_packages
+
+## Using Librarian
+
+The [Librarian][librarian] gem aims to be Bundler for your Chef cookbooks.
+Include a reference to the cookbook in a **Cheffile** and run
+`librarian-chef install`. To install with Librarian:
+
+    gem install librarian
+    cd chef-repo
+    librarian-chef init
+    cat >> Cheffile <<END_OF_CHEFFILE
+    cookbook 'platform_packages',
+      :git => 'git://github.com/fnichol/chef-platform_packages.git', :ref => 'v0.4.0'
+    END_OF_CHEFFILE
+    librarian-chef install
+
+## Using knife-github-cookbooks
+
+The [knife-github-cookbooks][kgc] gem is a plugin for *knife* that supports
+installing cookbooks directly from a GitHub repository. To install with the
+plugin:
+
+    gem install knife-github-cookbooks
+    cd chef-repo
+    knife cookbook github install fnichol/chef-platform_packages/v0.4.0
+
+## As a Git Submodule
+
+A common practice (which is getting dated) is to add cookbooks as Git
+submodules. This is accomplishes like so:
+
+    cd chef-repo
+    git submodule add git://github.com/fnichol/chef-platform_packages.git cookbooks/platform_packages
+    git submodule init && git submodule update
+
+**Note:** the head of development will be linked here, not a tagged release.
+
+## As a Tarball
+
+If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
+Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
+
+    cd chef-repo/cookbooks
+    curl -Ls https://github.com/fnichol/chef-platform_packages/tarball/v0.4.0 | tar xfz - && \
+      mv fnichol-chef-platform_packages-* platform_packages
+
 # Usage
 
 Simply include `recipe[platform_packages]` in your run_list and populate the

@@ -185,7 +185,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+[chef_repo]:    https://github.com/opscode/chef-repo
 [homebrew_cb]:  http://community.opscode.com/cookbooks/homebrew
+[kgc]:          https://github.com/websterclay/knife-github-cookbooks#readme
+[librarian]:    https://github.com/applicationsonline/librarian#readme
 [package]:      http://wiki.opscode.com/display/chef/Resources#Resources-Package
 
 [repo]:         https://github.com/fnichol/chef-platform_packages

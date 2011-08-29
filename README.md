@@ -165,7 +165,7 @@ There are **none** defined.
 * Report issues/Questions/Feature requests on [GitHub Issues][issues]
 
 Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every seperate change you make.
+Ideally create a topic branch for every separate change you make.
 
 # License and Author
 

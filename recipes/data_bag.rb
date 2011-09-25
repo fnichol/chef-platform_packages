@@ -25,5 +25,5 @@ rescue => ex
   Hash.new
 end
 
-node['platform_packages']['pkgs'] += Array(bag_item['pkgs'])
+node.set['platform_packages']['pkgs'] = Array(bag_item['pkgs'])
 include_recipe 'platform_packages'

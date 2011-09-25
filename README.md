@@ -57,7 +57,7 @@ Include a reference to the cookbook in a **Cheffile** and run
     librarian-chef init
     cat >> Cheffile <<END_OF_CHEFFILE
     cookbook 'platform_packages',
-      :git => 'git://github.com/fnichol/chef-platform_packages.git', :ref => 'v0.4.0'
+      :git => 'git://github.com/fnichol/chef-platform_packages.git', :ref => 'v0.4.2'
     END_OF_CHEFFILE
     librarian-chef install
 
@@ -69,7 +69,7 @@ plugin:
 
     gem install knife-github-cookbooks
     cd chef-repo
-    knife cookbook github install fnichol/chef-platform_packages/v0.4.0
+    knife cookbook github install fnichol/chef-platform_packages/v0.4.2
 
 ## As a Git Submodule
 
@@ -88,7 +88,7 @@ If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
 Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
 
     cd chef-repo/cookbooks
-    curl -Ls https://github.com/fnichol/chef-platform_packages/tarball/v0.4.0 | tar xfz - && \
+    curl -Ls https://github.com/fnichol/chef-platform_packages/tarball/v0.4.2 | tar xfz - && \
       mv fnichol-chef-platform_packages-* platform_packages
 
 # Usage

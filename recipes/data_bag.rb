@@ -22,7 +22,7 @@ bag_item  = begin
   data_bag_item(*bag)
 rescue => ex
   Chef::Log.info("Data bag #{bag.join('/')} not found (#{ex}), so skipping")
-  Hash.new
+  Hash {}
 end
 
 node.set['platform_packages']['pkgs'] = Array(bag_item['pkgs'])

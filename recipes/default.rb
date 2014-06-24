@@ -19,7 +19,7 @@
 
 node['platform_packages']['pkgs'].each do |pkg_hash|
   package pkg_hash[:name] do
-    %w{version source options action}.each do |attr|
+    %w(version source options action).each do |attr|
       send(attr, pkg_hash[attr])  if pkg_hash[attr]
     end
   end
